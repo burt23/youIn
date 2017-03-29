@@ -13,8 +13,9 @@ class Facebook extends React.Component {
         cookie     : true,  // enable cookies to allow the server to access
                           // the session
         xfbml      : true,
-        version    : 'v2.1'
+        version    : 'v2.8'
       });
+      FB.AppEvents.logPageView();
       FB.getLoginStatus(function(response) {
         this.statusChangeCallback(response);
       }.bind(this));
@@ -73,6 +74,7 @@ class Facebook extends React.Component {
   }
 
   handleClick() {
+    console.log('facebook');
     FB.login(this.statusChangeCallback.bind(this), {scope: 'public_profile, email'});
   }
   render() {
