@@ -17,7 +17,7 @@
   display: flex;
   align-items: center;
   float: center;
-    justify-content: center;
+  justify-content: center;
 
 }
 
@@ -221,3 +221,9 @@ button */
   color: black;
 }
 
+.profilePicture img {
+  position: absolute;
+  top: 10%;
+  right: 6%;
+  border-radius: 50%;
+}
