@@ -11,6 +11,23 @@ class Chat extends React.Component{
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
   }
+
+  componentDidMount(){
+    var socket = io();
+    var context = this;
+    //listening for 'chat message', setting state
+
+    socket.on('messages', (msg) => {
+      console.log('messages', msg);
+      let messages = context.state.messages;
+      messages = msg;
+      console.log('messages', messages);
+      context.setState({
+        messages: messages
+      })
+    });
+  }
+
   handleFormSubmit(event){
     event.preventDefault();
     event.stopPropagation();
@@ -33,17 +50,6 @@ class Chat extends React.Component{
     //route and message to send to server
     socket.emit('chat', message);
 
-    //listening for 'chat message', setting state
-
-    socket.on('messages', (msg) => {
-      console.log('messages', msg);
-      let messages = context.state.messages;
-      messages[context.state.messages.length] = msg;
-      console.log('messages', messages);
-      context.setState({
-        messages: messages
-      })
-    });
 
 
 
@@ -84,36 +90,11 @@ class Chat extends React.Component{
       </div>
 
       <div className='chatFlexMiddle'>
-        <div className='flexRowMiddle'>
-
-          <input type='textarea' className='displayChatNames'/>
-          <input type='textarea' className='displayChatMessages'/>
-
-        </div>
-        <div className='flexRowMiddle'>
-
-          <input type='textarea' className='displayChatNames'/>
-          <input type='textarea' className='displayChatMessages'/>
-
-        </div>
-        <div className='flexRowMiddle'>
-
-          <input type='textarea' className='displayChatNames'/>
-          <input type='textarea' className='displayChatMessages'/>
-
-        </div>
-        <div className='flexRowMiddle'>
-
-          <input type='textarea' className='displayChatNames'/>
-          <input type='textarea' className='displayChatMessages'/>
-
-        </div>
-        <div className='flexRowMiddle'>
-
-          <input type='textarea' className='displayChatNames'/>
-          <input type='textarea' className='displayChatMessages'/>
-
-        </div>
+        <ul className='flexRowMiddle'>
+          {this.state.messages.map(message =>
+            <li className='displayChatNames' key={message.message}>{message.message}</li>
+          )}
+        </ul>
       </div>
 
       <div className='chatFlexBottom'>
@@ -131,3 +112,33 @@ class Chat extends React.Component{
 
 
 export default Chat;
+        // <div className='flexRowMiddle'>
+
+        //   <input type='textarea' className='displayChatNames'/>
+        //   <input type='textarea' className='displayChatMessages'/>
+
+        // </div>
+        // <div className='flexRowMiddle'>
+
+        //   <input type='textarea' className='displayChatNames'/>
+        //   <input type='textarea' className='displayChatMessages'/>
+
+        // </div>
+        // <div className='flexRowMiddle'>
+
+        //   <input type='textarea' className='displayChatNames'/>
+        //   <input type='textarea' className='displayChatMessages'/>
+
+        // </div>
+        // <div className='flexRowMiddle'>
+
+        //   <input type='textarea' className='displayChatNames'/>
+        //   <input type='textarea' className='displayChatMessages'/>
+
+        // </div>
+        // <div className='flexRowMiddle'>
+
+        //   <input type='textarea' className='displayChatNames'/>
+        //   <input type='textarea' className='displayChatMessages'/>
+
+        // </div>
