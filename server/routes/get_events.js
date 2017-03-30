@@ -12,6 +12,6 @@ module.exports = (req, res) => {
     res.status(200).json(results);
   })
   .catch( (error) => {
-    res.status(404).send(error, 'failed to get events, please try again');
+    res.status(404).send(error);
   });
 };

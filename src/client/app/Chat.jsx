@@ -16,22 +16,26 @@ class Chat extends React.Component{
     event.stopPropagation();
 
     let context = this;
+    let author = this.props.owner;
+    console.log('author', author);
+
     console.log('inside form event');
     var socket = io();
     var message = {
-      message: this.state.message,
-      author: this.props.owner,
       event_id: 3,
-      photourl: this.props.owner.photourl,
-      author_id: this.props.owner.user_id,
-      email: this.props.email
+      event_owner: 234234234,
+      message: this.state.message,
+      photourl: author.photourl,
+      author_id: author.user_id,
+      author_email: author.email,
     }
 
     //route and message to send to server
-    socket.emit('chat message', message);
+    socket.emit('chat', message);
+
     //listening for 'chat message', setting state
 
-    socket.on('chat message', (msg) => {
+    socket.on('messages', (msg) => {
       console.log('messages', msg);
       let messages = context.state.messages;
       messages[context.state.messages.length] = msg;
@@ -41,12 +45,14 @@ class Chat extends React.Component{
       })
     });
 
+
+
+
     this.setState({
       message: ''
     })
-
-    // this.props
   }
+
   handleTextChange(event){
     console.log('inside handleTextChange')
     this.setState({

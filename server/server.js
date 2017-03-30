@@ -9,7 +9,7 @@ let path = require('path');
 let handler = require('./routes/request_handler');
 let fs = require('fs');
 let port = process.env.PORT || 8080;
-let db = require('.config.js');
+// let db = require('./config.js');
 
 let app = express();
 var server = require('http').Server(app);
@@ -73,14 +73,28 @@ app.get('*', handler.wildCard);
 //     console.log('userDisconnected', data)
 //   })
 // })
+
+
+
 io.on('connection', function (socket) {
   console.log('inside connectionYEAHBUDDY');
   socket.on('chat', function(msg) {
-    handler.saveMessage(msg)
-    //on incoming message log message in db and return updated message list
     console.log('message from client:', msg)
-    // io.emit('chat message', msg);
-  })
+    //on incoming message log message in db and return updated message list
+    handler.saveMessage(msg)
+      .then( () => {
+        console.log('inside then promise', msg);
+        return handler.getMessages(msg.event_id)
+      }).
+      then((messages) => {
+        // return handler.getMessages(msg)
+        console.log('messageSERVER', messages)
+        io.emit('messages', messages);
+      })
+      .catch( (error) => {
+        console.error(error);
+      })
+    });
   socket.on('disconnect', function (data) {
     console.log('userDisconnected', data)
   })
@@ -88,8 +102,8 @@ io.on('connection', function (socket) {
 
 server.listen(8080, function(){
   console.log('we are now listening on: who cares!!!');
-
 })
+
 // app.listen(port, function() {
   // console.log('we are now listening on: ' + port);
 // });

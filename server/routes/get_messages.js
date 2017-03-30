@@ -2,10 +2,10 @@
 
 let db = require('../config.js');
 
-module.exports = function(message){
-  console.log('inside save message', message);
+module.exports = function(event_id){
+  console.log('inside save messageyoyoyo', event_id);
 
-return db.query('INSERT INTO messages (event_id, event_owner, message, photourl, author_email, author_id) VALUES ($1, $2, $3, $4, $5, $6)', [message.event_id, message.event_owner, message.message, message.photourl, message.author_email, message.author_id])
+return db.query('SELECT * FROM MESSAGES WHERE event_id=$1', [event_id]);
 }
 
 
