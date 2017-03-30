@@ -7,9 +7,13 @@ let session = require('express-session');
 let passport = require('./middleware/initPassport');
 let path = require('path');
 let handler = require('./routes/request_handler');
-
+let fs = require('fs');
 let port = process.env.PORT || 8080;
+let db = require('.config.js');
+
 let app = express();
+var server = require('http').Server(app);
+let io = require('socket.io')(server);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -56,7 +60,36 @@ app.get('/test', passport.authenticate('facebook-token'), function(req, res) {
 
 app.get('*', handler.wildCard);
 
+// io.on('connection', function (socket) {
+//   console.log('inside connectionYEAHBUDDY');
+//   socket.on('chat message', function(msg) {
+//     //on incoming message log message in db and return updated message list
+//     db.
+//     console.log('message from client:', msg)
+//     io.emit('chat message', msg);
+//   })
+//   // socket.emit('news', { hello: 'world' });
+//   socket.on('disconnect', function (data) {
+//     console.log('userDisconnected', data)
+//   })
+// })
+io.on('connection', function (socket) {
+  console.log('inside connectionYEAHBUDDY');
+  socket.on('chat', function(msg) {
+    handler.saveMessage(msg)
+    //on incoming message log message in db and return updated message list
+    console.log('message from client:', msg)
+    // io.emit('chat message', msg);
+  })
+  socket.on('disconnect', function (data) {
+    console.log('userDisconnected', data)
+  })
+})
 
-app.listen(port, function() {
-  console.log('we are now listening on: ' + port);
-});
+server.listen(8080, function(){
+  console.log('we are now listening on: who cares!!!');
+
+})
+// app.listen(port, function() {
+  // console.log('we are now listening on: ' + port);
+// });

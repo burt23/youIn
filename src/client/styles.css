@@ -227,3 +227,86 @@ button */
   right: 6%;
   border-radius: 50%;
 }
+
+.chatContainer{
+  /*border: 1px red solid;*/
+  width: 100%;
+  height: 70%;
+  padding: 1em;
+  margin: 1em;
+  background-color: cyan;
+  border-radius: 1em;
+}
+
+.chatFlexForm {
+  /*border: 1px green solid;*/
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+  align-content: stretch;
+  height: 100%;
+
+}
+
+.chatFlexTop {
+  flex: 0 1 auto;
+  min-height: auto;
+  /*border: 1 purple solid;*/
+  background-color: rgba(191, 51, 51, 0.47);
+  padding: 0.5em;
+  margin: 0;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
+}
+
+.chatFlexMiddle{
+  flex: 1 1 auto;
+  min-height: auto;
+  /*border: 1 yellow solid;*/
+  background-color: rgba(255, 255, 255, 0.91);
+}
+
+.chatFlexBottom{
+  flex: 0 1 auto;
+  min-height: auto;
+  /*border: 1 white solid;*/
+  background-color: rgba(255, 255, 255, 0.68);
+  /*padding: 1em;*/
+}
+
+.flexRowTop{
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.flexRowMiddle{
+  display: flex;
+  align-items: stretch;
+}
+
+.flexRowBottom{
+  display: flex;
+  align-items: stretch;
+}
+
+input.chatFlex4-5{
+  flex: 1 1 auto;
+  padding: 1em;
+}
+
+input.chatFlex1-5{
+  flex: 0 1 auto;
+}
+
+.displayChatNames{
+  flex: 0 1 auto;
+}
+
+.displayChatMessages{
+  flex: 1 1 auto;
+}
+
+
+

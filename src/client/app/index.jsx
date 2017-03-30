@@ -9,9 +9,6 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import Facebook from './Facebook.jsx';
 import $ from 'jquery';
 
-
-
-
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -40,7 +37,7 @@ class App extends React.Component {
   }
   setName(name) {
     this.setState({
-      userName: name 
+      userName: name
     });
   }
 
@@ -80,15 +77,15 @@ class App extends React.Component {
       <Router>
       <div>
         <Route exact path='/' component={(props) => {
-          return (<Facebook history={props.history} 
+          return (<Facebook history={props.history}
             setToken={this.setToken.bind(this)}
-            setName={this.setName.bind(this)} 
+            setName={this.setName.bind(this)}
             getEvents={this.getEvents.bind(this)}/>
           )
         }} />
         <Route path='/homepage' component={(props) => {
           return ( <Homepage ownerEvents={this.state.ownerEvents}
-            friendEvents={this.state.friendEvents} friends={this.state.friends} 
+            friendEvents={this.state.friendEvents} friends={this.state.friends}
             accessToken={this.state.facebookToken} userName={this.state.userName}
             history={props.history}
             getEvents={this.getEvents.bind(this)}/>)

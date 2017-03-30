@@ -3,6 +3,7 @@ import OwnerEventList from './OwnerEventList.jsx';
 import FriendEventList from './FriendEventList.jsx';
 import CreateEventButton from './CreateEventButton.jsx';
 import LogoutButton from './LogoutButton.jsx';
+import Chat from './Chat.jsx';
 
 class Homepage extends React.Component {
   constructor(props) {
@@ -51,6 +52,7 @@ class Homepage extends React.Component {
             <LogoutButton />
             <span className='profilePicture'><img src={this.props.friends[0].photourl} alt='profilePicture' height='50' width='50'/></span>
           </div>
+          <Chat owner={this.props.friends[0]}/>
           <CreateEventButton
           history={this.props.history}
           friends={this.props.friends}
