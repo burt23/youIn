@@ -1,4 +1,6 @@
 import React from 'react';
+import Message from './Message.jsx';
+// var socket = require('react-socket');
 
 class Chat extends React.Component{
   constructor(props){
@@ -10,13 +12,8 @@ class Chat extends React.Component{
     //bind functions
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
-  }
-
-  componentDidMount(){
     var socket = io();
     var context = this;
-    //listening for 'chat message', setting state
-
     socket.on('messages', (msg) => {
       console.log('messages', msg);
       let messages = context.state.messages;
@@ -26,6 +23,11 @@ class Chat extends React.Component{
         messages: messages
       })
     });
+  }
+
+  componentDidMount(){
+    //listening for 'chat message', setting state
+
   }
 
   handleFormSubmit(event){
@@ -92,7 +94,7 @@ class Chat extends React.Component{
       <div className='chatFlexMiddle'>
         <ul className='flexRowMiddle'>
           {this.state.messages.map(message =>
-            <li className='displayChatNames' key={message.message}>{message.message}</li>
+            <Message message={message} className='displayChatNames' key={message.created}/>
           )}
         </ul>
       </div>

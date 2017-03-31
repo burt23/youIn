@@ -265,6 +265,7 @@ button */
   min-height: auto;
   /*border: 1 yellow solid;*/
   background-color: rgba(255, 255, 255, 0.91);
+  overflow: scroll;
 }
 
 .chatFlexBottom{
@@ -281,10 +282,11 @@ button */
   align-items: stretch;
 }
 
-/*.flexRowMiddle{
+.flexRowMiddle{
   display: flex;
+  flex-direction: column;
   align-items: stretch;
-}*/
+}
 
 .flexRowBottom{
   display: flex;
@@ -304,9 +306,28 @@ input.chatFlex1-5{
   flex: 0 1 auto;
 }
 
-.displayChatMessages{
+/*.displayChatMessages{
   flex: 1 1 auto;
+}*/
+
+li img {
+  height: 2em;
+  margin: 0.5em;
+  border-radius: 50%;
 }
 
+li {
+  list-style: none;
+}
 
+p.msgContent{
+  display: inline;
+  font-size: 1.2em;
+}
+
+.msgTime{
+  display: block;
+  padding: 0;
+  margin: 0;
+}
 

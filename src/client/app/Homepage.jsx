@@ -4,6 +4,7 @@ import FriendEventList from './FriendEventList.jsx';
 import CreateEventButton from './CreateEventButton.jsx';
 import LogoutButton from './LogoutButton.jsx';
 import Chat from './Chat.jsx';
+import $ from 'jquery';
 
 class Homepage extends React.Component {
   constructor(props) {

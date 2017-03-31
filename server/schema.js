@@ -49,7 +49,8 @@ module.exports = (db) => {
       event_id INT NOT NULL,\
       event_owner BIGINT NOT NULL,\
       message VARCHAR(1000) NOT NULL,\
-      date TIMESTAMP WITH TIME ZONE,\
+      created TIMESTAMP(8) default (now()),\
+      date DATE,\
       photourl VARCHAR(255) NOT NULL,\
       author_email VARCHAR(255) NOT NULL,\
       author_id BIGINT NOT NULL);')
