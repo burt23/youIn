@@ -12,7 +12,7 @@ class Message extends React.Component {
     let msg = this.props.message;
 
     return(
-      <li class='chatMessage'>
+      <li className='chatMessage'>
         <div className='msgTopBar'>
           <img src={msg.photourl}/>
             <div className='msgTop'>

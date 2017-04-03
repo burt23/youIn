@@ -22,8 +22,8 @@ class Event extends React.Component {
       {/* -------LEFT HAND COLUMN------- */}
       <div className="col-sm-3 account">
         <Account
-          friends={this.props.friends} 
-          myEvents={this.props.ownerEvents} 
+          friends={this.props.friends}
+          myEvents={this.props.ownerEvents}
           friendEvents={this.props.ownerEvents}
         />
       </div>
@@ -38,13 +38,13 @@ class Event extends React.Component {
 
          {/* -------MAIN------- */}
         <div className='col-sm-8 mainview'>
-          {this.state.clickedEvent ? 
-            <CreateEvent 
+          {this.state.clickedEvent ?
+            <CreateEvent
               history={this.props.history}
               friends={this.props.friends}
-              getEvents={this.props.getEvents} 
-            /> : 
-            <EventOverview 
+              getEvents={this.props.getEvents}
+            /> :
+            <EventOverview
             />
           }
         </div>

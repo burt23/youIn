@@ -66,13 +66,14 @@ class EventOverview extends React.PureComponent {
     });
   }
 
+
   handleRemindClick () {
     console.log('reminder clicked!');
 
     if (!this.state.remindButtonClicked) {
       this.sendSmsReminder('/sms/remind');
     }
-    
+
     this.setState({
       remindButtonClicked: !this.state.remindButtonClicked
     });
@@ -82,6 +83,7 @@ class EventOverview extends React.PureComponent {
     const event = this.props.event;
     const date = this.props.event ? this.props.event.date.slice(0, 10) : undefined;
     return (
+
       <div className='EventOverviewWrapper'>
         <div className='eventDetails'>
           <h4>Title: {event.title}</h4>
@@ -95,9 +97,9 @@ class EventOverview extends React.PureComponent {
 
         <div className='reminders col-md-12'>
           {!this.state.remindButtonClicked
-            ? <button 
-                onClick={this.handleRemindClick} 
-                id="owner-delete-button" 
+            ? <button
+                onClick={this.handleRemindClick}
+                id="owner-delete-button"
                 className="col-md-offset-1 remindButton"
                 >
                 Send event reminders to group now
@@ -107,7 +109,7 @@ class EventOverview extends React.PureComponent {
               </h3>
           }
         </div>
-        
+
         <div className='whosIn col-md-12'>
           <h2 className='whosIn'> Who's In? </h2>
           <div className="col-md-12">

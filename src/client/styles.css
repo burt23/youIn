@@ -257,6 +257,7 @@ h3.sendText {
 }
 
 .container-fluid.main{
+  position: fixed;
   margin: 0 auto;
   padding: 0;
   height: 100%;
@@ -274,7 +275,6 @@ h3.sendText {
   background-color: antiquewhite;
   padding: 1em;
   margin: 0 auto;
-  width: 100%;
   border-bottom: 2px double black;
 }
 
@@ -431,6 +431,26 @@ ul.flexRowMiddle li:nth-child(odd) {
 .col-md-12 h4 {
   text-align: center;
 }
+.chatFlexForm {
+  /*border: 1px green solid;*/
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+  align-content: stretch;
+
+}
+.chatFlexTop {
+  flex: 0 1 auto;
+  margin: 0;
+}
+
+.chatFlexMiddle{
+  flex: 1 1 auto;
+  min-height: auto;
+  overflow: scroll;
+}
+
 .chatFlexBottom{
   flex: 0 1 auto;
   min-height: auto;
@@ -439,17 +459,19 @@ ul.flexRowMiddle li:nth-child(odd) {
   /*padding: 1em;*/
 }
 
-/*.flexRowTop{
+.flexRowTop{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: stretch;
+  font-size: 1.2em;
+
 }
 
 .flexRowMiddle{
   display: flex;
   flex-direction: column;
   align-items: stretch;
-}*/
+}
 
 .flexRowBottom{
   display: flex;

@@ -3,6 +3,7 @@ import OwnerEventList from './OwnerEventList.jsx';
 import FriendEventList from './FriendEventList.jsx';
 import LogoutButton from './LogoutButton.jsx';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import FriendEventOverview from './FriendEventOverview.jsx';
 
 import Chat from './Chat.jsx';
 import TopBar from './TopBar.jsx';
@@ -19,6 +20,7 @@ class Homepage extends React.Component {
       clickedEvent: false,
       createEvent: false,
       currentEvent: [],
+      owner: false
 
     };
     this.handleWantsCreateEvent = this.handleWantsCreateEvent.bind(this);
@@ -28,15 +30,27 @@ class Homepage extends React.Component {
   componentWillMount(){
     if(this.props.ownerEvents.length > 0){
       this.setState({
-        currentEvent: this.props.ownerEvents[0]
+        currentEvent: this.props.ownerEvents[0],
+        owner: true
       })
+      // if(this.props.ownerEvents.includes(this.state.currentEvent)){
+      //   this.setState({
+      //     owner: true
+      //   })
+      // }
     } else if (this.props.friendEvents.length > 0){
       this.setState({
         currentEvent: this.props.friendEvents[0]
       })
+      // if(this.props.ownerEvents.includes(this.state.currentEvent)){
+      //   this.setState({
+      //     owner: true
+      //   })
+      // }
     } else {
       this.setState({
-        createEvent: true
+        createEvent: true,
+        // owner: false
       })
     }
   }
@@ -72,24 +86,43 @@ class Homepage extends React.Component {
   handleWantsEvent(event) {
     console.log('inside handle wants event');
     //change event from one to another
+    console.log('props', this.props.ownerEvents);
+    console.log('props', this.props.ownerEvents.includes(this.state.currentEvent));
+      if(this.props.ownerEvents.includes(event)){
+        this.setState({
+          owner: true
+        })
+      } else {
+        this.setState({
+          owner: false
+        })
+      }
+
       this.setState({
         currentEvent: event,
         clickedEvent: true,
         createEvent: false
       })
+
     }
 
   componentDidMount() {
-    // this.setState({
-    //   intervalId: setInterval(this.pollEvents.bind(this), 1000)
-    // });
+    this.setState({
+      intervalId: setInterval(this.pollEvents.bind(this), 5000)
+    });
+    if(event.owner === this.props.friends[0].user_id){
+      console.log('setting ownership rights');
+      this.setState({
+        owner: true
+      })
+    }
   }
 
   componentWillUnmount() {
-    // clearInterval(this.state.intervalId);
-    // this.setState({
-    //   intervalId: null
-    // });
+    clearInterval(this.state.intervalId);
+    this.setState({
+      intervalId: null
+    });
   }
 
   render() {
@@ -124,7 +157,9 @@ class Homepage extends React.Component {
           <div className='mainviewWrapper'>
              {/* -------MAIN------- */}
             <div className='col-sm-8 mainview'>
-              <EventOverview event={this.state.currentEvent}/>
+              {this.state.owner ? (<EventOverview event={this.state.currentEvent}/>) : (<FriendEventOverview event={this.state.currentEvent}/>)}
+              {/*<FriendEventOverview event={this.state.currentEvent}/>*/}
+
 
             </div>
 
