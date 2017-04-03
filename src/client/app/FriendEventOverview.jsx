@@ -1,4 +1,5 @@
 import React from 'react';
+import AttendeeTable from './AttendeeTable.jsx';
 
 class FriendEventOverview extends React.PureComponent {
   constructor(props) {
@@ -72,6 +73,12 @@ class FriendEventOverview extends React.PureComponent {
             onChange={this.onDonationChanged.bind(this)} />
         </div>
         <div><input type='submit' value='Send RVSP'/>TODO: link to a state update function</div>
+        <div className='whosIn col-md-12'>
+          <h2 className='whosIn'> Who's In? </h2>
+          <div className="col-md-12">
+            <AttendeeTable attendees={event.attendees}/>
+          </div>
+        </div>
       </div>
     )
   }
